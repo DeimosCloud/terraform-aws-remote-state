@@ -16,8 +16,8 @@ resource "random_id" "this" {
 
 ##### Locals
 locals {
-  bucket_name      = var.bucket_name != "" ? var.bucket_name : "terraform-state-${random_id.this.hex}"
-  dynamo_lock_name = var.dynamo_lock_name != "" ? var.dynamo_lock_name : "terraform-state-lock-${random_id.this.hex}"
+  bucket_name      = var.bucket_name != "" ? var.bucket_name : "${var.name_prefix}-${random_id.this.hex}"
+  dynamo_lock_name = var.dynamo_lock_name != "" ? var.dynamo_lock_name : "${var.name_prefix}-lock-${random_id.this.hex}"
 }
 
 ################# CREATING THE REMOTE S3 BUCKET

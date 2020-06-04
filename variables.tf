@@ -1,5 +1,5 @@
 variable "region" {
-  description = "Region of for remote state bucket"
+  description = "Region to create S3 bucket in"
 }
 
 variable "bucket_key" {
@@ -8,12 +8,17 @@ variable "bucket_key" {
 }
 
 variable "bucket_name" {
-  description = "Name of bucket"
+  description = "Name of bucket to be created"
   default     = ""
 }
 
+variable "name_prefix" {
+  description = "Prefix for all created resources"
+  default     = "tfstate-"
+}
+
 variable "dynamo_lock_name" {
-  description = "Name of bucket"
+  description = "Name of Dynamo lock to be created for lock"
   default     = ""
 }
 

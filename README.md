@@ -36,6 +36,7 @@ Report issues/questions/feature requests on in the issues section.
 
 Full contributing guidelines are covered [here](CONTRIBUTING.md).
 
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
 | Name | Version |
@@ -76,3 +77,5 @@ Full contributing guidelines are covered [here](CONTRIBUTING.md).
 |------|-------------|
 | bucket\_name | bucket name |
 | dynamodb\_table | Dynamodb name |
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

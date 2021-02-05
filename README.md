@@ -1,8 +1,7 @@
-# Remote State Locking S3
+# Terraform AWS Remote State Module
 A terraform module to automate creation and configuration of backend using S3 bucket
 
-
-## Usage example
+## Usage
 
 ```hcl
 module "remote_state_locking" {

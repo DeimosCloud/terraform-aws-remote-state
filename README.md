@@ -4,9 +4,12 @@ A terraform module to automate creation and configuration of backend using S3 bu
 ## Usage
 
 ```hcl
+provider "aws" {
+  region  = "us-east-2" # Bucket is created in the same region
+}
+
 module "remote_state_locking" {
-  source   = "git::https://gitlab.com/deimosdev/tooling/terraform-modules/terraform-remote-state"
-  region   = var.aws_region
+  source   = "git::https://gitlab.com/deimosdev/tooling/terraform-modules/terraform-aws-remote-state"
   use_lock = false
 }
 ```
@@ -41,20 +44,16 @@ Full contributing guidelines are covered [here](CONTRIBUTING.md).
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12 |
-| aws | >= 2.52.0 |
-| local | >= 1.2 |
-| null | >= 2.1 |
-| random | >= 2.1 |
-| template | >= 2.1 |
+| aws | ~> 3.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | >= 2.52.0 |
-| null | >= 2.1 |
-| random | >= 2.1 |
-| template | >= 2.1 |
+| aws | ~> 3.0.0 |
+| null | n/a |
+| random | n/a |
+| template | n/a |
 
 ## Inputs
 
@@ -62,12 +61,11 @@ Full contributing guidelines are covered [here](CONTRIBUTING.md).
 |------|-------------|------|---------|:--------:|
 | backend\_output\_path | The default file to output backend configuration to | `string` | `"./backend.tf"` | no |
 | bucket\_key | The Key to store bucket in | `string` | `"global/terrform.tfstate"` | no |
-| bucket\_name | Name of bucket to be created | `string` | `""` | no |
-| dynamo\_lock\_name | Name of Dynamo lock to be created for lock | `string` | `""` | no |
+| bucket\_name | Name of bucket to be created. If not provided name is generated from name\_prefix appended with a random string | `string` | `""` | no |
+| dynamo\_lock\_name | Name of Dynamo lock to be created for lock. If not provided name is generated from name\_prefix appended with a random string | `string` | `""` | no |
 | enable\_versioning | enables versioning for objects in the S3 bucket | `bool` | `true` | no |
 | force\_destroy | Whether to allow a forceful destruction of this bucket | `bool` | `false` | no |
 | name\_prefix | Prefix for all created resources | `string` | `"tfstate-"` | no |
-| region | Region to create S3 bucket in | `any` | n/a | yes |
 | use\_lock | Whether to enable locking using dynamo\_db | `bool` | `true` | no |
 
 ## Outputs

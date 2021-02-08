@@ -1,14 +1,10 @@
-variable "region" {
-  description = "Region to create S3 bucket in"
-}
-
 variable "bucket_key" {
   description = "The Key to store bucket in"
   default     = "global/terrform.tfstate"
 }
 
 variable "bucket_name" {
-  description = "Name of bucket to be created"
+  description = "Name of bucket to be created. If not provided name is generated from name_prefix appended with a random string"
   default     = ""
 }
 
@@ -18,7 +14,7 @@ variable "name_prefix" {
 }
 
 variable "dynamo_lock_name" {
-  description = "Name of Dynamo lock to be created for lock"
+  description = "Name of Dynamo lock to be created for lock. If not provided name is generated from name_prefix appended with a random string"
   default     = ""
 }
 

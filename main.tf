@@ -1,15 +1,4 @@
-terraform {
-  required_version = ">= 0.12"
-
-  required_providers {
-    aws      = ">= 2.52.0"
-    local    = ">= 1.2"
-    null     = ">= 2.1"
-    template = ">= 2.1"
-    random   = ">= 2.1"
-  }
-}
-
+data "aws_region" "current" {}
 resource "random_id" "this" {
   byte_length = "10"
 }
@@ -24,7 +13,6 @@ locals {
 resource "aws_s3_bucket" "remote_state" {
   bucket        = local.bucket_name
   acl           = "private"
-  region        = var.region
   force_destroy = var.force_destroy
 
   server_side_encryption_configuration {
@@ -57,7 +45,7 @@ data "template_file" "remote_state" {
   template = "${file("${path.module}/templates/remote_state.tpl")}"
   vars = {
     remote_state_bucket = local.bucket_name
-    bucket_region       = var.region
+    bucket_region       = data.aws_region.current.name
     bucket_key          = var.bucket_key
     dynamodb_table      = local.dynamo_lock_name
     use_lock            = var.use_lock

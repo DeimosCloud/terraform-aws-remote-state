@@ -42,7 +42,7 @@ resource "aws_dynamodb_table" "terraform_locks" {
 
 ################# AUTOMATING REMOTE STATE LOCKING
 data "template_file" "remote_state" {
-  template = "${file("${path.module}/templates/remote_state.tpl")}"
+  template = file("${path.module}/templates/remote_state.tpl")
   vars = {
     remote_state_bucket = local.bucket_name
     bucket_region       = data.aws_region.current.name

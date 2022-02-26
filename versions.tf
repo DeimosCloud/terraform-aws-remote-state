@@ -5,6 +5,3 @@ terraform {
     aws = ">= 3.0.0, < 4.0.0"
   }
 }
-
-provider "aws" {
-}
